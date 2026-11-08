@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Full-bleed backdrop: a lamp-lit room rendered in Blender with a very shallow
+   focus (public/bg-lamp.jpg), blurred a little more and slightly enlarged so the
+   blur never shows a hard edge. Uses a fixed layer instead of
+   background-attachment: fixed, which phones (iOS Safari) ignore. */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color: #fff;
+  background-color: #2a1a10;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(30, 18, 10, 0.05), rgba(30, 18, 10, 0.25)),
+    url("/bg-lamp.jpg") 62% center / cover no-repeat,
+    #2a1a10;
+  filter: blur(14px) saturate(115%);
+  transform: scale(1.08);
+}
+
+/* Keep clear of the notch / home bar when opened full-screen from the home screen */
+@utility safe-pad {
+  padding-top: max(0.75rem, env(safe-area-inset-top));
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  padding-left: max(0.75rem, env(safe-area-inset-left));
+  padding-right: max(0.75rem, env(safe-area-inset-right));
+  @media (width >= 48rem) {
+    padding: max(1.5rem, env(safe-area-inset-top)) max(1.5rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom)) max(1.5rem, env(safe-area-inset-left));
+  }
+}
+
+/* Outer floating panel */
+@utility glass-panel {
+  background: linear-gradient(160deg, rgba(255, 240, 225, 0.1), rgba(36, 22, 13, 0.34));
+  backdrop-filter: blur(28px) saturate(130%) brightness(0.88);
+  -webkit-backdrop-filter: blur(28px) saturate(130%) brightness(0.88);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow:
+    0 30px 80px -20px rgba(40, 24, 12, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+/* Reusable frosted card */
+@utility glass-card {
+  background-color: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  box-shadow:
+    0 10px 30px -12px rgba(30, 18, 8, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility thin-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+}
+
+/* Recharts focus outline off */
+.recharts-wrapper *:focus,
+.recharts-surface:focus {
+  outline: none;
+}

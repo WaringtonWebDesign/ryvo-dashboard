@@ -1,0 +1,18 @@
+# Dependencies and build output
+node_modules/
+dist/
+*.local
+
+# Secrets: never commit these
+server/.session-secret
+server/users.json
+.env
+.env.*
+!.env.example
+
+# Logs and OS / editor clutter
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

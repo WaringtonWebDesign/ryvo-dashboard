@@ -1,0 +1,4 @@
+{
+  "oliver": { "fullName": "Optional full name", "salt": "32 hex characters", "hash": "64 hex characters" },
+  "ryley": { "fullName": "Optional full name", "salt": "32 hex characters", "hash": "64 hex characters" }
+}
